@@ -17,8 +17,15 @@ def make_word_into_list(computer_word):
     return word_as_list  
 
 
-def show_blanks(word_as_list): 
-        print('_ '*len(word_as_list))
+'''The code below might be helpful....but I'm really not sure.
+I was trying to make a dicitonary of dictionaries for the letter, then 
+we could choose the second value in the dictionary if the letter was guessed?'''
+def display(word_as_list):
+    letters = {}
+    for letter in word_as_list:
+        letters[letter] = dict(["_ ", (letter)])
+    print(dict)
+    # print('_ '*len(word_as_list))
 
 
 def get_guess():
@@ -47,10 +54,9 @@ def compare_guess_to_word(guess, word):
 
 def play_game():
     computer_word = "dream"
-    print(f'computer word type: {type(computer_word)}')
     remaining_guesses = 8
     word_as_list = make_word_into_list(computer_word)
-    show_blanks(word_as_list)
+    display(word_as_list)
     # the stuff below will be inside of a loop
     while remaining_guesses > 0:
         # while loop: keep going until the user has reached 0 remaining guesses
