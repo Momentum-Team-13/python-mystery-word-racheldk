@@ -14,49 +14,44 @@ def make_word_into_list(computer_word):
     print(f'word as list: {word_as_list}') 
     return word_as_list  
 
-def display_word(word_as_list): 
+def make_display(word_as_list): 
     display = [(letter.replace(letter, "_ ")) for letter in word_as_list] 
     print(f'display: {display}')   
     return display
-    # to call retreive word_as_list() as a variable first, then use that variable when calling display_word
+    # to call retreive word_as_list() as a variable first, then use that variable when calling display_word   
 
 def get_guess():
     user_guess = input('Guess a letter: ')  
     if len(user_guess) == 1 and user_guess.isalpha():
         user_guess = user_guess.lower()
         print(f'You guessed {user_guess}')
-        return user_guess  
+        return user_guess
     else:    
         print('Your guess is not a single letter.')   
         return get_guess()    
-        # ^ you have to specify that you want to call the function again, but also return what the function has made. because we learned this today when it didn't work. 
-
-def compare_guess_to_word(user_guess, word_as_list, display):
-    # this will take user_guess variable and computer_word variable
-    if user_guess in word_as_list:
-        print(f'{user_guess} is in the mystery word')
-        display = [(letter.replace("_ ", user_guess)) for letter in word_as_list]
-        print(display)
-        # change display to show where the guess is
-    else:
-        print(f'{user_guess} is not in the mystery word.')
-        #decrement number of guesses left  
-    return user_guess       
+        # ^ you have to specify that you want to call the function again, but also return what the function has made. because we learned this today when it didn't work.      
 
 def play_game():
     computer_word = generate_word()
-    print(f'computer word type: {type(computer_word)}')
-    guesses_made = []
+    # run generate word. computer_word is the thing generate_word made. should be "dream" for now, later will be random word from file
     word_as_list = make_word_into_list(computer_word)
-    display = display_word(word_as_list)
-    # the stuff below will be inside of a loop
-    while len(guesses_made) <= 8:
-        # while loop: keep going until the user has reached 0 remaining guesses
+    # run make_word_into_list and retrieve the thing it made, calling it word_as_list. should be ["d", "r", "e", "a", "m"]
+    display = make_display(word_as_list)
+    # display = the thing make_display made. should be ["_", "_", "_", "_", "_"] 
+    letters_guessed = []
+    # will store user_guess letters here if they are not in the word. 
+    while len(letters_guessed) <=8:
         user_guess = get_guess()
-        compare_guess_to_word(user_guess, word_as_list, display)
-        # ?? decrement remaining guesses here so that it'll change within the while loop
+        letters_guessed.append(user_guess)
+        # user_guess = the thing get_guess made. should be a single, lowercase letter
+        
 
 
+
+
+
+        display = [(letter.replace(letter, "_")) if letter not in letters_guessed else letter for letter in word_as_list]
+        print(f'display {display}')
 
 if __name__ == "__main__":
     play_game()
