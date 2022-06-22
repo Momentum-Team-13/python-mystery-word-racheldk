@@ -1,5 +1,6 @@
 import random
 
+
 '''attempting to generate random word 
 def generate_word():
     file = open("words.txt")
@@ -48,7 +49,7 @@ def compare_guess_to_word(guess, word):
         # change display to show where the guess is
     else:
         print(f'{guess} is not in the mystery word.')
-        #decrement number of guesses left  
+        #decrement number of guesses left or add to increasing listof guesses? ????where to store guesses - can a function 
     return guess       
 
 
